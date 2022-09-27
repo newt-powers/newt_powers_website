@@ -5,4 +5,12 @@ def create_app():
     # encrypt/secure session data and cookies, character for secret key
     app.config['SECRET_KEY'] = 'secrets_are_stupid'
 
+    # import views, auth blueprints
+    from .views import views
+    from .auth import auth
+
+    # Register with flask application
+    app.register_blueprint(views, url_prefix='/')
+    app.register_blueprint(auth, url_prefix='/')
+
     return app
